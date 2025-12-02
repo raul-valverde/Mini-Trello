@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>CollabSecure - Mini Trello</title>
+    <style>
+        /* ESTILO (INTEGRANTE 2) */
+        body { font-family: Arial, sans-serif; background: #f4f4f9; }
+        .container { display: flex; justify-content: space-around; padding: 20px; }
+        .column { background: white; width: 30%; padding: 10px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        .header { text-align: center; background: #333; color: white; padding: 10px; }
+        .task { background: #e3f2fd; margin: 10px 0; padding: 10px; border-left: 5px solid #2196F3; cursor: pointer; }
+        
+        /* LOGIN Y SEGURIDAD (INTEGRANTE 4) */
+        #loginOverlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #333; display: flex; justify-content: center; align-items: center; color: white; flex-direction: column; z-index: 100; }
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+
+    <div id="loginOverlay">
+        <h1>CollabSecure Login</h1>
+        <input type="text" id="user" placeholder="Usuario">
+        <input type="password" id="pass" placeholder="Contraseña">
+        <button onclick="login()">Ingresar</button>
+        <p id="errorMsg" style="color: red;"></p>
+        <small><i>Política de Uso: Sus datos son simulados (Ética).</i></small>
+    </div>
+
+    <div id="app" class="hidden">
+        <div class="header">
+            <h2>Tablero de Equipo</h2>
+            <button onclick="logout()">Salir</button>
+        </div>
+        
+        <div style="text-align: center; margin: 20px;">
+            <input type="text" id="newTask" placeholder="Nueva tarea...">
+            <button onclick="addTask()">Agregar</button>
+        </div>
+
+        <div class="container">
+            <div class="column" id="col-pendiente">
+                <h3>Pendiente 🔴</h3>
+                <div id="list-pendiente"></div>
+            </div>
+            <div class="column" id="col-proceso">
+                <h3>En Proceso 🟡</h3>
+                <div id="list-proceso"></div>
+            </div>
+            <div class="column" id="col-completo">
+                <h3>Completo 🟢</h3>
+                <div id="list-completo"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // LÓGICA (INTEGRANTE 3 y 4)
+        
+        // Medida de Seguridad 1: Autenticación Simple
+        function login() {
+            const u = document.getElementById('user').value;
+            const p = document.getElementById('pass').value;
+            // Clave encriptada simulada (1234 al revés es 4321)
+            if(u === 'admin' && p === '1234') { 
+                document.getElementById('loginOverlay').classList.add('hidden');
+                document.getElementById('app').classList.remove('hidden');
+            } else {
+                document.getElementById('errorMsg').innerText = "Acceso Denegado";
+            }
+        }
+
+        function logout() {
+            location.reload();
+        }
+
+        // Medida Ética 2: Filtro de contenido ofensivo
+        function addTask() {
+            const input = document.getElementById('newTask');
+            const texto = input.value;
+            const malasPalabras = ["tonto", "inutil", "feo"]; // Agregar más
+            
+            if(texto === "") return alert("Escribe algo");
+
+            // Validación Ética
+            for(let palabra of malasPalabras) {
+                if(texto.includes(palabra)) {
+                    return alert("AVISO ÉTICO: Lenguaje no apropiado detectado.");
+                }
+            }
+
+            // Crear elemento visual
+            const tareaDiv = document.createElement('div');
+            tareaDiv.className = 'task';
+            tareaDiv.innerHTML = `<b>${texto}</b> <br> <button onclick="mover(this)">Avanzar ➡️</button>`;
+            
+            document.getElementById('list-pendiente').appendChild(tareaDiv);
+            input.value = "";
+        }
+
+        // Lógica de movimiento (Mini Trello)
+        function mover(boton) {
+            const tarea = boton.parentElement;
+            const columnaActual = tarea.parentElement.id;
+            
+            if(columnaActual === 'list-pendiente') {
+                document.getElementById('list-proceso').appendChild(tarea);
+            } else if(columnaActual === 'list-proceso') {
+                document.getElementById('list-completo').appendChild(tarea);
+                boton.remove(); // Ya no se puede mover más
+                tarea.innerHTML += " ✅";
+            }
+        }
+    </script>
+</body>
+</html>
