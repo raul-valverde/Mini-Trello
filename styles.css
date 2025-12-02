@@ -1,0 +1,62 @@
+:root{
+    --bg:#f5f7fb;
+    --card:#ffffff;
+    --muted:#6b7280;
+    --accent-1:#6c5ce7;
+    --accent-2:#00b894;
+    --red:#ff7675;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+    margin:0; font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    background: linear-gradient(180deg, #eef2ff 0%, var(--bg) 100%);
+    color:#111827;
+}
+.header{
+    display:flex; align-items:center; justify-content:space-between; gap:16px;
+    background:linear-gradient(90deg,var(--accent-1),#4b6cf7);
+    color:white; padding:14px 20px; box-shadow:0 6px 18px rgba(79,70,229,0.12);
+}
+.header h2{margin:0; font-size:1.25rem}
+.header button{background:rgba(255,255,255,0.12); border:0; color:white; padding:8px 12px; border-radius:8px; cursor:pointer}
+
+.topbar-form{display:flex; gap:8px; align-items:center; justify-content:center; padding:18px}
+.topbar-form input[type="text"]{width:60%; max-width:540px; padding:10px 12px; border-radius:10px; border:1px solid #e6e9ef; background:white}
+.topbar-form button{padding:10px 14px; border-radius:10px; border:0; background:var(--accent-2); color:white; cursor:pointer; box-shadow:0 6px 12px rgba(0,184,148,0.12)}
+
+.container{display:flex; gap:18px; padding:22px; align-items:flex-start; justify-content:space-around}
+.column{background:var(--card); flex:1; min-width:260px; border-radius:12px; padding:14px; box-shadow:0 6px 20px rgba(15,23,42,0.06); display:flex; flex-direction:column}
+.column h3{margin:0 0 8px 0; font-size:1.05rem; display:flex; align-items:center; gap:8px}
+.list{min-height:120px; display:flex; flex-direction:column}
+
+.task{background:linear-gradient(180deg,#ffffff,#fbfdff); border-radius:10px; padding:12px; margin:8px 0; box-shadow:0 3px 8px rgba(15,23,42,0.06); border-left:6px solid var(--accent-1); transition:transform .12s ease, box-shadow .12s ease}
+.task:hover{transform:translateY(-3px); box-shadow:0 10px 30px rgba(15,23,42,0.08)}
+.task .meta{display:flex; justify-content:space-between; align-items:center; gap:8px}
+.task button{background:transparent; border:0; color:var(--muted); cursor:pointer}
+
+.column--pending .task{border-left-color:#ffb86b}
+.column--process .task{border-left-color:#4b6cf7}
+.column--done .task{border-left-color:#00b894; opacity:0.95}
+
+/* Drag & drop visuals */
+.column.drag-over{outline:3px dashed rgba(79,70,229,0.16); transform:scale(1.01)}
+
+/* Login overlay */
+#loginOverlay{position:fixed; inset:0; display:flex; align-items:center; justify-content:center; background:linear-gradient(180deg, rgba(15,23,42,0.85), rgba(15,23,42,0.95)); z-index:100; color:white}
+#loginOverlay .panel{background:linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02)); padding:28px; border-radius:12px; box-shadow:0 10px 40px rgba(2,6,23,0.7); display:flex; flex-direction:column; gap:10px; min-width:320px}
+#loginOverlay input{padding:10px; border-radius:8px; border:1px solid rgba(255,255,255,0.08); background:rgba(255,255,255,0.04); color:white}
+#loginOverlay button{padding:10px; border-radius:8px; border:0; background:var(--accent-1); color:white}
+
+.hidden{display:none}
+
+/* Responsive */
+@media (max-width:900px){
+    .container{flex-direction:column; padding:12px}
+    .topbar-form input[type="text"]{width:70%}
+}
+
+@media (max-width:420px){
+    .topbar-form input[type="text"]{width:100%}
+    .topbar-form{flex-direction:column}
+}
