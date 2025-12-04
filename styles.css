@@ -39,10 +39,8 @@ body{
 .column--process .task{border-left-color:#4b6cf7}
 .column--done .task{border-left-color:#00b894; opacity:0.95}
 
-/* Drag & drop visuals */
 .column.drag-over{outline:3px dashed rgba(79,70,229,0.16); transform:scale(1.01)}
 
-/* Login overlay */
 #loginOverlay{position:fixed; inset:0; display:flex; align-items:center; justify-content:center; background:linear-gradient(180deg, rgba(15,23,42,0.85), rgba(15,23,42,0.95)); z-index:100; color:white}
 #loginOverlay .panel{background:linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02)); padding:28px; border-radius:12px; box-shadow:0 10px 40px rgba(2,6,23,0.7); display:flex; flex-direction:column; gap:10px; min-width:320px}
 #loginOverlay input{padding:10px; border-radius:8px; border:1px solid rgba(255,255,255,0.08); background:rgba(255,255,255,0.04); color:white}
@@ -50,7 +48,6 @@ body{
 
 .hidden{display:none}
 
-/* Responsive */
 @media (max-width:900px){
     .container{flex-direction:column; padding:12px}
     .topbar-form input[type="text"]{width:70%}
@@ -59,4 +56,34 @@ body{
 @media (max-width:420px){
     .topbar-form input[type="text"]{width:100%}
     .topbar-form{flex-direction:column}
+}
+
+.task .content{flex:1; display:flex; flex-direction:column; gap:6px}
+.task .title{font-weight:600; color:#0f172a}
+.task .meta{display:flex; justify-content:space-between; gap:8px; font-size:0.82rem; color:var(--muted); align-items:center}
+.task .meta .user{font-weight:600; color:var(--muted)}
+.task .meta .date{font-size:0.78rem; color:var(--muted)}
+.task .controls{display:flex; gap:6px; align-items:center}
+.btn{padding:6px 8px; border-radius:8px; cursor:pointer; background:transparent; border:1px solid transparent; transition:background .12s ease, transform .06s ease}
+.btn:disabled{opacity:0.45; cursor:not-allowed}
+.btn-move{color:var(--muted)}
+.btn-move:hover{background:rgba(15,23,42,0.04)}
+.btn-delete{color:var(--red)}
+.btn-delete:hover{background:rgba(255,118,117,0.08)}
+
+.task{display:flex; justify-content:space-between; align-items:center}
+
+.topbar-form select#memberSelect{padding:8px 10px; border-radius:8px; border:1px solid #e6e9ef; background:white}
+.topbar-form button#addMemberBtn{background:transparent; color:var(--accent-1); border:1px dashed rgba(0,0,0,0.06); padding:8px 10px}
+
+.meta .user{background:linear-gradient(90deg,var(--accent-1),#6c5ce7); color:white; padding:4px 8px; border-radius:999px; font-size:0.8rem}
+.meta .date{background:rgba(15,23,42,0.04); padding:4px 8px; border-radius:6px}
+.meta .user, .meta .date{display:inline-block}
+
+.inline-member-select{padding:6px 8px; border-radius:6px}
+.task input[type="datetime-local"]{padding:6px; border-radius:6px; border:1px solid #e6e9ef}
+
+@media (max-width:700px){
+    .topbar-form{flex-direction:column; gap:8px}
+    .topbar-form select#memberSelect{width:100%}
 }
