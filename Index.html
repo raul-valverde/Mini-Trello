@@ -12,8 +12,12 @@
             <h1>CollabSecure Login</h1>
             <input type="text" id="user" placeholder="Usuario">
             <input type="password" id="pass" placeholder="Contraseña">
-            <button type="button" onclick="login()">Ingresar</button>
-            <p id="errorMsg" style="color: red;"></p>
+            <input type="password" id="passConfirm" placeholder="Confirmar contraseña (solo para registrar)" style="display:block; margin-top:8px;">
+            <div style="display:flex; gap:8px; justify-content:center; margin-top:8px;">
+                <button type="button" onclick="login()">Ingresar</button>
+                <button type="button" onclick="registerUser()">Registrar</button>
+            </div>
+            <p id="errorMsg" style="color: red; margin-top:6px;"></p>
             <small style="font-weight: bold; color: #007bff;"><i>Política de Uso: Sus datos son simulados (Ética).</i></small>
         </div>
     </div>
@@ -38,6 +42,7 @@
             </select>
             <button id="addMemberBtn" type="button">Agregar miembro</button>
             <button onclick="addTask()">Agregar</button>
+            <p id="taskError" style="color: red; margin:0; font-size:0.9rem;"></p>
         </div>
 
         <div class="container">
