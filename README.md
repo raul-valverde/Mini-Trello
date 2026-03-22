@@ -1,5 +1,5 @@
 # Mini-Trello
-Trabajo evaluativo de Kellys Bellanger, Raúl Valverde, Jimmy Selva, Erick Arana y Jesser Rodriguez.
+Trabajo evaluativo de Kellys Bellanger, Raúl Valverde, Jimmy Selva, Erick Arana y Jesser Rodriguez. Para la clase de Plataformas de colaboración digital (2 semestre)
 
 ## Uso
 
